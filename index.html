@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="lrt">
+ <head>
+   <meta charset="utf-8">
+   <title>quadrato verde</title>
+   <script src="jquery.min.js"></script>
+   <style media="screen">
+
+   .forma1{
+     height: 100px; width: 100px;
+     position: absolute;
+     top: 50%; left:50%;
+     transform: translate(-50%,-50%);
+   }
+
+   .forma2{
+     height: 100px; width: 100px;
+     position: absolute;
+     top: 50%; left:-20%;
+     transform: translate(-50%,-50%);
+   }
+
+   .cerchio{
+     border-radius: 50%;
+   }
+
+   .verde{
+     background-color: green;
+   }
+
+   .blu{
+     background-color: blue;
+   }
+
+   .rosso{
+     background-color: red;
+   }
+
+   .centro{
+     top:50%; left:50%;
+   }
+
+   @keyframes spin {
+     from{transform: translate(-50%,-50%) rotate(0)}
+     to{transform: translate(-50%,-50%) rotate(360deg)}
+  }
+
+    .ruota{
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes destra {
+    0%   {top: 50%; left: -20%;}
+    100% {top: 50%; left: 50%;}
+}
+    .cerchioDentro{
+      animation: destra 1s forwards linear;
+    }
+
+    @keyframes destra2 {
+    0%   {top: 50%; left: 50%;}
+    100% {top: 50%; left: 120%;}
+}
+    .quadratoFuori{
+      animation: destra2 1s forwards linear;
+    }
+
+    @keyframes sinistra {
+    0%   {top: 50%; left: 120%;}
+    100% {top: 50%; left: 50%;}
+}
+    .quadratoDentro{
+      animation: sinistra 1s forwards linear;
+    }
+
+   </style>
+
+<div class="forma1 verde"></div>
+<div class="forma2 blu cerchio"></div>
+
+ </head>
+  <body>
+  <script type="text/javascript">
+
+  var c=0;
+
+  $(".forma1").click(function(){
+    $(".forma1").addClass("quadratoFuori");
+    $(".forma2").addClass("cerchioDentro");
+    c=1;
+  })
+
+  $(".forma2").click(function(){
+    if(c==1){
+    $(".forma2").removeClass("cerchio");
+    $(".forma2").removeClass("blu");
+    $(".forma2").addClass("rosso");
+  c=2;
+    }
+    else if(c==2){
+    $(".forma2").removeClass("cerchioDentro");
+    $(".forma2").addClass("ruota");
+    $(".forma2").addClass("centro");
+    c=3;
+    }
+    else if(c==3){
+    $(".forma2").addClass("quadratoFuori");
+    $(".forma1").addClass("quadratoDentro");
+    c=4;
+    }
+  })
+  <!--fine js-->
+
+  </script>
+ </body>
+</html>
